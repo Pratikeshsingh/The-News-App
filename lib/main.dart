@@ -27,7 +27,7 @@ void main() async {
   final _isDarkModeOn = await Hive.box('settingsBox').get('isDarkModeOn');
   SettingsProvider().darkTheme(_isDarkModeOn ?? false);
 
-  final _lang = await Hive.box('settingsBox').get('activeLang');
+  final _lang = await Hive.box('settingsBox').get('activeLang') ?? "English";
   SettingsProvider().setLang(_lang);
 
   SystemChrome.setSystemUIOverlayStyle(
