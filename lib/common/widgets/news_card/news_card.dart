@@ -3,7 +3,7 @@ import 'dart:ui';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:inshort_clone/common/utils/logger.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
@@ -43,7 +43,7 @@ class NewsCard extends StatelessWidget {
     provider.setNewsURL(article.url);
     removeArticleFromUnreads(article);
 
-    debugPrint(article.url);
+    logMessage(article.url);
 
     return GestureDetector(
       onTap: () {

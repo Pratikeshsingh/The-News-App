@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:inshort_clone/common/utils/logger.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -128,7 +128,7 @@ class BuildNewsScreen extends StatelessWidget {
           );
         } else if (state is NewsFeedErrorState) {
           provider.setDataLoaded(true);
-          debugPrint(state.message);
+          logMessage(state.message);
           return Container(
             height: double.maxFinite,
             width: double.maxFinite,
