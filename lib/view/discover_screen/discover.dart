@@ -14,19 +14,6 @@ import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/category_card.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/headline.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/topics_card.dart';
-
-class _TopicData {
-  final String key;
-  final String icon;
-  final bool isCategory;
-  final String value;
-
-  const _TopicData(
-      {required this.key,
-      required this.icon,
-      required this.isCategory,
-      required this.value});
-}
 import 'widgets/app_bar.dart';
 
 class _TopicData {
