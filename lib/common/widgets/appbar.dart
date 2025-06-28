@@ -20,7 +20,7 @@ import 'package:inshort_clone/style/text_style.dart';
 
 class CustomAppBar extends StatelessWidget {
   final int index;
-  const CustomAppBar({Key key, this.index = 1}) : super(key: key);
+  const CustomAppBar({Key? key, this.index = 1}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
