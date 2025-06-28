@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +27,7 @@ void convertWidgetToImageAndShare(BuildContext context, containerKey) async {
         text:
             'This message sent from *inshorts Clone* made by *Sanjay Soni*\nFork this repository on *Github*\n\n https://github.com/imSanjaySoni/Inshorts-Clone.');
   } catch (e) {
-    print('error: $e');
+    debugPrint('error: $e');
   }
 
   Provider.of<FeedProvider>(context, listen: false).setWatermarkVisible(false);

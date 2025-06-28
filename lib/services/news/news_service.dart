@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 // Package imports:
 import 'package:dio/dio.dart';
@@ -33,7 +34,7 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
     provider.setDataLoaded(false);
     provider.setLastGetRequest("getNewsByTopic", topic);
-    print("getNewsByTopic" + " " + topic);
+    debugPrint('getNewsByTopic $topic');
 
     Response response = await GetDio.getDio().get(url);
     if (response.statusCode == 200) {
@@ -100,7 +101,7 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
     provider.setLastGetRequest("getNewsFromLocalStorage", fromBox);
 
-    print(fromBox);
+    debugPrint(fromBox);
 
     if (hiveBox.length > 0) {
       for (int i = 0; i < hiveBox.length; i++) {

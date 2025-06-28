@@ -3,6 +3,7 @@ import 'dart:ui';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 // Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
@@ -38,7 +39,7 @@ class NewsCard extends StatelessWidget {
     provider.setNewsURL(article.url);
     removeArticleFromUnreads(article);
 
-    print(article.url);
+    debugPrint(article.url);
 
     return GestureDetector(
       onTap: () {

@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 // Project imports:
 import 'package:inshort_clone/global/global.dart';
@@ -28,7 +29,7 @@ class GetDio {
         onError: (DioError dioError) async {
           if (dioError.type == DioErrorType.DEFAULT) {
             if (dioError.message.contains('SocketException')) {
-              print("no internet");
+              debugPrint('no internet');
             }
           }
 
