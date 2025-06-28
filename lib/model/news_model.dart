@@ -4,9 +4,14 @@ import 'package:hive/hive.dart';
 part 'news_model.g.dart';
 
 class NewsModel {
-  String status;
-  int totalResults;
-  List<Articles> articles = [];
+  /// Status returned from API. Non-nullable.
+  final String status;
+
+  /// Total results returned from API. Non-nullable.
+  final int totalResults;
+
+  /// List of article objects associated with the response.
+  final List<Articles> articles;
 
   NewsModel({
     required this.status,
@@ -14,16 +19,13 @@ class NewsModel {
     required this.articles,
   });
 
-  NewsModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    totalResults = json['totalResults'];
-    if (json['articles'] != null) {
-      articles = <Articles>[];
-      json['articles'].forEach((v) {
-        articles.add(Articles.fromJson(v));
-      });
-    }
-  }
+  NewsModel.fromJson(Map<String, dynamic> json)
+      : status = json['status'] ?? '',
+        totalResults = json['totalResults'] ?? 0,
+        articles = json['articles'] != null
+            ? List<Articles>.from(
+                (json['articles'] as List).map((v) => Articles.fromJson(v)))
+            : <Articles>[];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -66,18 +68,17 @@ class Articles {
     required this.content,
   });
 
-  Articles.fromJson(Map<String, dynamic> json) {
-    sourceName = json['source'] != null
-        ? Source.fromJson(json['source']).name
-        : null;
-    author = json['author'];
-    title = json['title'];
-    description = json['description'];
-    url = json['url'];
-    urlToImage = json['urlToImage'];
-    publishedAt = json['publishedAt'];
-    content = json['content'];
-  }
+  Articles.fromJson(Map<String, dynamic> json)
+      : sourceName = json['source'] != null
+            ? Source.fromJson(json['source']).name
+            : null,
+        author = json['author'] ?? '',
+        title = json['title'] ?? '',
+        description = json['description'] ?? '',
+        url = json['url'] ?? '',
+        urlToImage = json['urlToImage'] ?? '',
+        publishedAt = json['publishedAt'] ?? '',
+        content = json['content'] ?? '';
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -104,10 +105,9 @@ class Source {
     required this.name,
   });
 
-  Source.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-  }
+  Source.fromJson(Map<String, dynamic> json)
+      : id = json['id'] ?? '',
+        name = json['name'] ?? '';
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
