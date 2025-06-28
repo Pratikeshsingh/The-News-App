@@ -8,12 +8,12 @@ import 'package:inshort_clone/style/colors.dart';
 final ThemeData kDarkThemeData = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: Color(0xff222222),
-  accentColorBrightness: Brightness.dark,
   primaryColor: AppColor.accent,
-  accentIconTheme: IconThemeData(
-    color: AppColor.accent,
+  colorScheme: ColorScheme.dark(
+    primary: AppColor.accent,
+    secondary: AppColor.accent,
+    error: AppColor.error,
   ),
-  accentColor: AppColor.accent,
   appBarTheme: AppBarTheme(
     color: Color(0xff333333),
     systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -29,9 +29,15 @@ final ThemeData kDarkThemeData = ThemeData(
 
 final ThemeData kLightThemeData = ThemeData(
   canvasColor: AppColor.background,
-  accentColor: AppColor.accent,
   errorColor: AppColor.error,
-  cursorColor: AppColor.primaryVariant,
+  colorScheme: ColorScheme.light(
+    primary: AppColor.accent,
+    secondary: AppColor.accent,
+    error: AppColor.error,
+  ),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: AppColor.primaryVariant,
+  ),
   scaffoldBackgroundColor: Colors.white,
   brightness: Brightness.light,
   iconTheme: IconThemeData(
