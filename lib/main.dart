@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'package:inshort_clone/controller/provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inshort_clone/bloc/feed/news_feed_bloc.dart';
-import 'package:inshort_clone/bloc/search_feed/search_feed_bloc.dart';
-import 'package:inshort_clone/routes/routes.dart';
-import 'package:inshort_clone/services/news/news_service.dart';
+import 'package:inshort_clone/app/app.dart';
+import 'package:inshort_clone/controller/provider.dart';
+import 'package:inshort_clone/controller/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +17,8 @@ void main() async {
     await Hive.openBox('bookmarks');
     await Hive.openBox('topNews');
     await Hive.openBox('categories');
+    await Hive.openBox('unreads');
+    await Hive.openBox('settingsBox');
 
     runApp(MyApp());
   } catch (e, stackTrace) {
@@ -48,25 +47,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => FeedProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<NewsFeedBloc>(
-            create: (context) =>
-                NewsFeedBloc(repository: NewsFeedRepositoryImpl(context)),
-          ),
-          BlocProvider<SearchFeedBloc>(
-            create: (context) =>
-                SearchFeedBloc(repository: NewsFeedRepositoryImpl(context)),
-          ),
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Inshorts Clone',
-          onGenerateRoute: Routes.onGenerateRoute,
-          initialRoute: Routes.appBase,
-        ),
-      ),
+      child: App(),
     );
   }
 }
