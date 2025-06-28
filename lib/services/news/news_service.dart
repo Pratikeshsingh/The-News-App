@@ -6,6 +6,7 @@ import 'package:inshort_clone/common/utils/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 // Project imports:
 import 'package:inshort_clone/app/dio/dio.dart';
@@ -13,7 +14,10 @@ import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/model/news_model.dart';
 import 'package:inshort_clone/services/news/offline_service.dart';
 
-const String _fromDate = '2025-06-20';
+String _computeFromDate() {
+  final DateTime fromDate = DateTime.now().subtract(const Duration(days: 7));
+  return DateFormat('yyyy-MM-dd').format(fromDate);
+}
 
 abstract class NewsFeedRepository {
   Future<List<Articles>> getNewsByTopic(String topic);
@@ -30,7 +34,8 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
   NewsFeedRepositoryImpl(this.context);
 
   List<Articles> _filterArticles(List<Articles> articles) {
-    final DateTime cutoff = DateTime.parse(_fromDate);
+    final DateTime cutoff =
+        DateTime.now().subtract(const Duration(days: 7));
     return articles
         .where((article) {
           try {
@@ -45,7 +50,7 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
   @override
   Future<List<Articles>> getNewsByTopic(String topic) async {
-    final String url = "everything?q=$topic&from=$_fromDate";
+    final String url = "everything?q=$topic&from=${_computeFromDate()}";
     final provider = Provider.of<FeedProvider>(context, listen: false);
 
     provider.setDataLoaded(false);
@@ -96,7 +101,7 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
     provider.setDataLoaded(false);
 
-    final String url = "everything?q=$query&from=$_fromDate";
+    final String url = "everything?q=$query&from=${_computeFromDate()}";
 
     Response response = await GetDio.getDio().get(url);
     if (response.statusCode == 200) {
