@@ -1,0 +1,40 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '11.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+# Defining the Flutter root based on generated xcconfig
+flutter_generated_path = File.expand_path(File.join('Flutter', 'Generated.xcconfig'), __dir__)
+raise "#{flutter_generated_path} must exist. If you're running pod install manually, make sure flutter build ios is executed first" unless File.exist?(flutter_generated_path)
+
+flutter_root = nil
+File.foreach(flutter_generated_path) do |line|
+  match = line.match(/^FLUTTER_ROOT\=(.*)$/)
+  if match
+    flutter_root = File.expand_path(match[1].strip)
+    break
+  end
+end
+raise 'FLUTTER_ROOT not found in Generated.xcconfig' unless flutter_root
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+end
+
+post_install do |installer|
+  flutter_post_install(installer)
+end
