@@ -29,6 +29,18 @@ class _TopicData {
 }
 import 'widgets/app_bar.dart';
 
+class _TopicData {
+  final String key;
+  final String icon;
+  final bool isCategory;
+  final String value;
+
+  const _TopicData(
+      {required this.key,
+      required this.icon,
+      required this.isCategory,
+      required this.value});
+}
 class DiscoverScreen extends StatefulWidget {
   @override
   _DiscoverScreenState createState() => _DiscoverScreenState();
