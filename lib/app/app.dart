@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:inshort_clone/bloc/feed/news_feed_bloc.dart';
-import 'package:inshort_clone/bloc/serach_feed/search_feed_bloc.dart';
+import 'package:inshort_clone/bloc/search_feed/search_feed_bloc.dart';
 import 'package:inshort_clone/controller/settings.dart';
 import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/services/news/news_service.dart';
