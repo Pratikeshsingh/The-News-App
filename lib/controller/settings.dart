@@ -23,11 +23,7 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   String getActiveCountryCode() {
-    final value = Hive.box('settingsBox').get('activeLang');
-    if (value == "Nederlands") {
-      return "NL";
-    }
-    return "IN";
+    return "NL";
   }
 
   void darkTheme(bool status) {

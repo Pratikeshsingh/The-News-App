@@ -34,6 +34,7 @@ Replace the API Key field with your own key, for key visit [newsapi.org](https:/
 
 - Dark Mode
 - Multi Language Support [ English, हिंदी, Nederlands ]
+- Netherlands headlines by default
 - Share News Card As Image
 - Offline Read
 - Watermark on shared news card
