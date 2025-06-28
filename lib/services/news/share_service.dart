@@ -23,8 +23,9 @@ void convertWidgetToImageAndShare(BuildContext context, containerKey) async {
       containerKey.currentContext.findRenderObject() as RenderRepaintBoundary;
   final ui.Image boxImage =
       await renderRepaintBoundary.toImage(pixelRatio: 1);
-  final ByteData byteData =
+  final ByteData? byteData =
       await boxImage.toByteData(format: ui.ImageByteFormat.png);
+  if (byteData == null) return;
   final Uint8List uInt8List = byteData.buffer.asUint8List();
 
   try {
