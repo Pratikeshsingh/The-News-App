@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+import 'package:inshort_clone/common/utils/logger.dart';
 
 // Package imports:
 import 'package:hive/hive.dart';
@@ -13,7 +13,7 @@ class ThemeProvider extends ChangeNotifier {
 
     final themeBox = Hive.box('themeMode');
     themeBox.put('isDarkModeOn', status);
-    debugPrint(themeBox.get('isDarkModeOn').toString());
+    logMessage(themeBox.get('isDarkModeOn').toString());
 
     notifyListeners();
   }
