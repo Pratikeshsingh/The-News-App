@@ -13,7 +13,7 @@ import 'package:inshort_clone/model/news_model.dart';
 import 'package:inshort_clone/style/colors.dart';
 import 'package:inshort_clone/style/text_style.dart';
 import 'package:inshort_clone/view/web_screen/web.dart';
-import '../../../aplication_localization.dart';
+import '../../../application_localization.dart';
 
 class BottomBar extends StatelessWidget {
   final Articles articles;

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:inshort_clone/global/global.dart';
 import 'package:inshort_clone/style/text_style.dart';
-import '../aplication_localization.dart';
+import '../application_localization.dart';
 
 class LoadingShorts extends StatelessWidget {
   @override
