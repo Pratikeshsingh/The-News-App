@@ -14,7 +14,7 @@ class ArticlesAdapter extends TypeAdapter<Articles> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Articles(
-      sourceName: fields[0] as String,
+      sourceName: fields[0] as String?,
       author: fields[1] as String,
       title: fields[2] as String,
       description: fields[3] as String,
