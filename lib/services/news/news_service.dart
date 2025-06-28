@@ -85,13 +85,21 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
     final provider = Provider.of<FeedProvider>(context, listen: false);
 
     provider.setDataLoaded(false);
-    provider.setLastGetRequest("getNewsByTopic", category);
+    provider.setLastGetRequest("getNewsByCategory", category);
 
     Response response = await GetDio.getDio().get(url);
     if (response.statusCode == 200) {
       List<Articles> articles =
           _filterArticles(NewsModel.fromJson(response.data).articles);
 
+      if (articles.isEmpty && category == "general") {
+        final String fallbackUrl = "top-headlines?country=${settingsProvider.getActiveCountryCode()}";
+        Response fallbackResponse = await GetDio.getDio().get(fallbackUrl);
+        if (fallbackResponse.statusCode == 200) {
+          articles = _filterArticles(NewsModel.fromJson(fallbackResponse.data).articles);
+          articles.shuffle();
+        }
+      }
       provider.setDataLoaded(true);
       addArticlesToUnreads(articles);
 
