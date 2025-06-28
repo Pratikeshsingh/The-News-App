@@ -86,8 +86,8 @@ class Routes {
         return MaterialPageRoute(
           builder: (_) => FeedScreen(
               key: typedArgs.key,
-              articalIndex: typedArgs.articalIndex,
-              articals: typedArgs.articals,
+              articleIndex: typedArgs.articleIndex,
+              articles: typedArgs.articles,
               isFromSearch: typedArgs.isFromSearch),
           settings: settings,
         );
@@ -110,13 +110,13 @@ class Routes {
 //FeedScreen arguments holder class
 class FeedScreenArguments {
   final Key key;
-  final int articalIndex;
-  final List<Articles> articals;
+  final int articleIndex;
+  final List<Articles> articles;
   final bool isFromSearch;
   FeedScreenArguments({
     this.key,
-    required this.articalIndex,
-    required this.articals,
+    required this.articleIndex,
+    required this.articles,
     required this.isFromSearch,
   });
 }
