@@ -65,9 +65,9 @@ class BottomActionBar extends StatelessWidget {
   }
 
   Widget actionButton({
-    @required String title,
-    @required IconData icon,
-    @required Function onTap,
+    required String title,
+    required IconData icon,
+    required Function onTap,
   }) {
     return InkWell(
       onTap: onTap,

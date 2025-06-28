@@ -16,12 +16,12 @@ class FeedScreen extends StatefulWidget {
   final int articalIndex;
   final bool isFromSearch;
 
-  const FeedScreen(
-      {Key key,
-      @required this.articalIndex,
-      @required this.articals,
-      @required this.isFromSearch})
-      : super(key: key);
+  const FeedScreen({
+    Key? key,
+    required this.articalIndex,
+    required this.articals,
+    required this.isFromSearch,
+  }) : super(key: key);
 
   @override
   _FeedScreenState createState() => _FeedScreenState();

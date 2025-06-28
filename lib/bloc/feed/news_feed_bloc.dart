@@ -11,8 +11,8 @@ import 'package:inshort_clone/model/news_model.dart';
 import 'package:inshort_clone/services/news/news_service.dart';
 
 class NewsFeedBloc extends Bloc<NewsFeedEvent, NewsFeedState> {
-  NewsFeedRepository repository;
-  NewsFeedBloc({@required this.repository});
+  final NewsFeedRepository repository;
+  NewsFeedBloc({required this.repository});
 
   @override
   NewsFeedState get initialState => NewsFeedInitialState();

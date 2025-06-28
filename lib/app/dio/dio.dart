@@ -9,7 +9,7 @@ class GetDio {
   GetDio._();
 
   static Dio getDio() {
-    Dio dio = new Dio();
+    Dio dio = Dio();
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options) async {
