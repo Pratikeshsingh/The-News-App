@@ -69,12 +69,9 @@ class CustomAppBar extends StatelessWidget {
                     Expanded(
                       child: Text(
                         index == 1
-                            ? value.getAppBarTitle != null
-                                ? value.getAppBarTitle
-                                : AppLocalizations.of(context)
-                                    .translate("my_feed")
-                            : AppLocalizations.of(context)
-                                .translate("discover"),
+                            ? value.getAppBarTitle ??
+                                AppLocalizations.of(context).translate("my_feed")
+                            : AppLocalizations.of(context).translate("discover"),
                         style: AppTextStyle.appBarTitle.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
@@ -90,9 +87,8 @@ class CustomAppBar extends StatelessWidget {
                           children: <Widget>[
                             index != 1
                                 ? Text(
-                                    value.getAppBarTitle != null
-                                        ? value.getAppBarTitle
-                                        : AppLocalizations.of(context)
+                                    value.getAppBarTitle ??
+                                        AppLocalizations.of(context)
                                             .translate("my_feed"),
                                     style: AppTextStyle.appBarTitle,
                                     overflow: TextOverflow.ellipsis,
