@@ -14,6 +14,19 @@ import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/category_card.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/headline.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/topics_card.dart';
+
+class _TopicData {
+  final String key;
+  final String icon;
+  final bool isCategory;
+  final String value;
+
+  const _TopicData(
+      {required this.key,
+      required this.icon,
+      required this.isCategory,
+      required this.value});
+}
 import 'widgets/app_bar.dart';
 
 class DiscoverScreen extends StatefulWidget {
@@ -23,11 +36,56 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   var bloc;
+  final List<_TopicData> _allTopics = const [
+    _TopicData(key: 'coronavirus', icon: 'coronavirus', isCategory: false, value: 'coronavirus'),
+    _TopicData(key: 'india', icon: 'india', isCategory: false, value: 'india'),
+    _TopicData(key: 'business', icon: 'business', isCategory: true, value: 'business'),
+    _TopicData(key: 'politics', icon: 'politics', isCategory: false, value: 'politics'),
+    _TopicData(key: 'sports', icon: 'sports', isCategory: true, value: 'sports'),
+    _TopicData(key: 'technology', icon: 'technology', isCategory: true, value: 'technology'),
+    _TopicData(key: 'startups', icon: 'startups', isCategory: false, value: 'startups'),
+    _TopicData(key: 'entertainment', icon: 'entertainment', isCategory: true, value: 'entertainment'),
+    _TopicData(key: 'education', icon: 'education', isCategory: false, value: 'education'),
+    _TopicData(key: 'automobile', icon: 'automobile', isCategory: false, value: 'automobile'),
+    _TopicData(key: 'science', icon: 'science', isCategory: true, value: 'science'),
+    _TopicData(key: 'travel', icon: 'travel', isCategory: false, value: 'travel'),
+    _TopicData(key: 'fashion', icon: 'fashion', isCategory: false, value: 'fashion'),
+  ];
+
+  List<_TopicData> _visibleTopics = [];
+  bool _loadingTopics = true;
+  bool _hasOther = false;
 
   @override
   void initState() {
     bloc = BlocProvider.of<NewsFeedBloc>(context);
+    _prepareTopics();
     super.initState();
+  }
+
+  Future<void> _prepareTopics() async {
+    final repo = bloc.repository;
+    List<_TopicData> visible = [];
+    bool other = false;
+    for (final t in _allTopics) {
+      try {
+        final news = t.isCategory
+            ? await repo.getNewsByCategory(t.value)
+            : await repo.getNewsByTopic(t.value);
+        if (news.isNotEmpty) {
+          visible.add(t);
+        } else {
+          other = true;
+        }
+      } catch (_) {
+        other = true;
+      }
+    }
+    setState(() {
+      _visibleTopics = visible;
+      _hasOther = other;
+      _loadingTopics = false;
+    });
   }
 
   @override
@@ -123,172 +181,46 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             headLine(AppLocalizations.of(context).translate("sugested_topics")),
             Padding(
               padding: const EdgeInsets.all(4.0),
-              child: GridView.count(
-                shrinkWrap: true,
-                childAspectRatio: (1 / 1.4),
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 3,
-                children: <Widget>[
-                  TopicCard(
-                    title:
-                        AppLocalizations.of(context).translate("coronavirus"),
-                    icon: "coronavirus",
-                    onTap: () {
-                      provider.setAppBarTitle(AppLocalizations.of(context)
-                          .translate("coronavirus"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "coronavirus"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("india"),
-                    icon: "india",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("india"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "india"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("business"),
-                    icon: "business",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("business"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByCategoryEvent(category: "business"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("politics"),
-                    icon: "politics",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("politics"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "politics"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("sports"),
-                    icon: "sports",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("sports"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByCategoryEvent(category: "sports"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("technology"),
-                    icon: "technology",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("technology"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByCategoryEvent(category: "technology"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("startups"),
-                    icon: "startups",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("startups"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "startups"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title:
-                        AppLocalizations.of(context).translate("entertainment"),
-                    icon: "entertainment",
-                    onTap: () {
-                      provider.setAppBarTitle(AppLocalizations.of(context)
-                          .translate("entertainment"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByCategoryEvent(category: "entertainment"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("education"),
-                    icon: "education",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("education"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "education"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("automobile"),
-                    icon: "automobile",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("automobile"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "automobile"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("science"),
-                    icon: "science",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("science"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByCategoryEvent(category: "science"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("travel"),
-                    icon: "travel",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("travel"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "travel"),
-                      );
-                    },
-                  ),
-                  TopicCard(
-                    title: AppLocalizations.of(context).translate("fashion"),
-                    icon: "fashion",
-                    onTap: () {
-                      provider.setAppBarTitle(
-                          AppLocalizations.of(context).translate("fashion"));
-                      FeedController.addCurrentPage(1);
-                      bloc.add(
-                        FetchNewsByTopicEvent(topic: "fashion"),
-                      );
-                    },
-                  ),
-                ],
-              ),
+              child: _loadingTopics
+                  ? Center(child: CircularProgressIndicator())
+                  : GridView.count(
+                      shrinkWrap: true,
+                      childAspectRatio: (1 / 1.4),
+                      physics: NeverScrollableScrollPhysics(),
+                      crossAxisCount: 3,
+                      children: <Widget>[
+                        for (final topic in _visibleTopics)
+                          TopicCard(
+                            title: AppLocalizations.of(context)
+                                .translate(topic.key),
+                            icon: topic.icon,
+                            onTap: () {
+                              provider.setAppBarTitle(
+                                  AppLocalizations.of(context).translate(topic.key));
+                              FeedController.addCurrentPage(1);
+                              bloc.add(
+                                topic.isCategory
+                                    ? FetchNewsByCategoryEvent(category: topic.value)
+                                    : FetchNewsByTopicEvent(topic: topic.value),
+                              );
+                            },
+                          ),
+                        if (_hasOther)
+                          TopicCard(
+                            title: AppLocalizations.of(context)
+                                .translate('others'),
+                            icon: 'international',
+                            onTap: () {
+                              provider.setAppBarTitle(AppLocalizations.of(context)
+                                  .translate('others'));
+                              FeedController.addCurrentPage(1);
+                              bloc.add(
+                                FetchNewsByCategoryEvent(category: 'general'),
+                              );
+                            },
+                          ),
+                      ],
+                    ),
             ),
           ],
         ),
