@@ -239,13 +239,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  feather_icons_flutter:
+  flutter_feather_icons:
     dependency: "direct main"
     description:
-      name: feather_icons_flutter
+      name: flutter_feather_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.7.4"
+    version: "2.0.0"
   file:
     dependency: transitive
     description:
