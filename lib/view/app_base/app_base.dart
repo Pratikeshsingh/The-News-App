@@ -123,8 +123,8 @@ class BuildNewsScreen extends StatelessWidget {
 
           return FeedScreen(
             isFromSearch: false,
-            articalIndex: 0,
-            articals: state.news,
+            articleIndex: 0,
+            articles: state.news,
           );
         } else if (state is NewsFeedErrorState) {
           provider.setDataLoaded(true);

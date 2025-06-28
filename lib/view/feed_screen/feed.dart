@@ -12,14 +12,14 @@ import 'package:inshort_clone/model/news_model.dart';
 import 'package:inshort_clone/view/web_screen/web.dart';
 
 class FeedScreen extends StatefulWidget {
-  final List<Articles> articals;
-  final int articalIndex;
+  final List<Articles> articles;
+  final int articleIndex;
   final bool isFromSearch;
 
   const FeedScreen({
     Key? key,
-    required this.articalIndex,
-    required this.articals,
+    required this.articleIndex,
+    required this.articles,
     required this.isFromSearch,
   }) : super(key: key);
 
@@ -34,7 +34,7 @@ class _FeedScreenState extends State<FeedScreen>
     super.build(context);
 
     PageController _pageController =
-        PageController(initialPage: widget.articalIndex);
+        PageController(initialPage: widget.articleIndex);
     PageController _searchPageController = PageController();
 
     int lastPage = 0;
@@ -66,11 +66,11 @@ class _FeedScreenState extends State<FeedScreen>
                         provider.setCurrentArticleIndex(page);
                       },
                       controller: _pageController,
-                      itemCount: widget.articals.length,
+                      itemCount: widget.articles.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (_, index) {
                         return NewsCard(
-                          article: widget.articals[index],
+                          article: widget.articles[index],
                           isFromSearch: widget.isFromSearch,
                         );
                       },
@@ -113,11 +113,11 @@ class _FeedScreenState extends State<FeedScreen>
                     provider.setFeedBottomActionbarVisible(false);
                   },
                   controller: _pageController,
-                  itemCount: widget.articals.length,
+                  itemCount: widget.articles.length,
                   scrollDirection: Axis.vertical,
                   itemBuilder: (_, index) {
                     return NewsCard(
-                      article: widget.articals[index],
+                      article: widget.articles[index],
                       isFromSearch: widget.isFromSearch,
                     );
                   },
