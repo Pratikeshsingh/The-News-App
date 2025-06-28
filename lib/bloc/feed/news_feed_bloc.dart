@@ -12,38 +12,43 @@ import 'package:inshort_clone/services/news/news_service.dart';
 
 class NewsFeedBloc extends Bloc<NewsFeedEvent, NewsFeedState> {
   final NewsFeedRepository repository;
-  NewsFeedBloc({required this.repository});
+  NewsFeedBloc({required this.repository}) : super(NewsFeedInitialState()) {
+    on<FetchNewsByCategoryEvent>(_onFetchNewsByCategory);
+    on<FetchNewsByTopicEvent>(_onFetchNewsByTopic);
+    on<FetchNewsFromLocalStorageEvent>(_onFetchNewsFromLocalStorage);
+  }
 
-  @override
-  NewsFeedState get initialState => NewsFeedInitialState();
+  Future<void> _onFetchNewsByCategory(
+      FetchNewsByCategoryEvent event, Emitter<NewsFeedState> emit) async {
+    emit(NewsFeedLoadingState());
+    try {
+      final List<Articles> news =
+          await repository.getNewsByCategory(event.category);
+      emit(NewsFeedLoadedState(news: news));
+    } catch (e) {
+      emit(NewsFeedErrorState(message: e.toString()));
+    }
+  }
 
-  @override
-  Stream<NewsFeedState> mapEventToState(NewsFeedEvent event) async* {
-    if (event is FetchNewsByCategoryEvent) {
-      yield NewsFeedLoadingState();
-      try {
-        List<Articles> news =
-            await repository.getNewsByCategory(event.category);
-        yield NewsFeedLoadedState(news: news);
-      } catch (e) {
-        yield NewsFeedErrorState(message: e.toString());
-      }
-    } else if (event is FetchNewsByTopicEvent) {
-      yield NewsFeedLoadingState();
-      try {
-        List<Articles> news = await repository.getNewsByTopic(event.topic);
-        yield NewsFeedLoadedState(news: news);
-      } catch (e) {
-        yield NewsFeedErrorState(message: e.toString());
-      }
-    } else if (event is FetchNewsFromLocalStorageEvent) {
-      yield NewsFeedLoadingState();
-      try {
-        List<Articles> news = repository.getNewsFromLocalStorage(event.box);
-        yield NewsFeedLoadedState(news: news);
-      } catch (e) {
-        yield NewsFeedErrorState(message: e.toString());
-      }
+  Future<void> _onFetchNewsByTopic(
+      FetchNewsByTopicEvent event, Emitter<NewsFeedState> emit) async {
+    emit(NewsFeedLoadingState());
+    try {
+      final List<Articles> news = await repository.getNewsByTopic(event.topic);
+      emit(NewsFeedLoadedState(news: news));
+    } catch (e) {
+      emit(NewsFeedErrorState(message: e.toString()));
+    }
+  }
+
+  Future<void> _onFetchNewsFromLocalStorage(
+      FetchNewsFromLocalStorageEvent event, Emitter<NewsFeedState> emit) async {
+    emit(NewsFeedLoadingState());
+    try {
+      final List<Articles> news = repository.getNewsFromLocalStorage(event.box);
+      emit(NewsFeedLoadedState(news: news));
+    } catch (e) {
+      emit(NewsFeedErrorState(message: e.toString()));
     }
   }
 }

@@ -12,22 +12,19 @@ import 'search_feed_state.dart';
 
 class SearchFeedBloc extends Bloc<SearchFeedEvent, SearchFeedState> {
   final NewsFeedRepository repository;
-  SearchFeedBloc({required this.repository});
+  SearchFeedBloc({required this.repository}) : super(SearchFeedInitialState()) {
+    on<FetchNewsBySearchQueryEvent>(_onFetchNewsBySearchQuery);
+  }
 
-  @override
-  SearchFeedState get initialState => SearchFeedInitialState();
-
-  @override
-  Stream<SearchFeedState> mapEventToState(SearchFeedEvent event) async* {
-    if (event is FetchNewsBySearchQueryEvent) {
-      yield SearchFeedLoadingState();
-      try {
-        List<Articles> news =
-            await repository.getNewsBySearchQuery(event.query);
-        yield SearchFeedLoadedState(news: news);
-      } catch (e) {
-        yield SearchFeedErrorState(message: e.toString());
-      }
+  Future<void> _onFetchNewsBySearchQuery(
+      FetchNewsBySearchQueryEvent event, Emitter<SearchFeedState> emit) async {
+    emit(SearchFeedLoadingState());
+    try {
+      final List<Articles> news =
+          await repository.getNewsBySearchQuery(event.query);
+      emit(SearchFeedLoadedState(news: news));
+    } catch (e) {
+      emit(SearchFeedErrorState(message: e.toString()));
     }
   }
 }
