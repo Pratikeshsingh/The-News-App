@@ -26,8 +26,8 @@ class AppBase extends StatefulWidget {
 
 class _AppBaseState extends State<AppBase> with AutomaticKeepAliveClientMixin {
   int currentPage = 1;
-  PageController _pageController;
-  FeedProvider provider;
+  late PageController _pageController;
+  late FeedProvider provider;
 
   @override
   void initState() {
