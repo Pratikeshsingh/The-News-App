@@ -19,7 +19,7 @@ class SearchFeedLoadingState extends SearchFeedState {
 
 class SearchFeedLoadedState extends SearchFeedState {
   final List<Articles> news;
-
+  
   SearchFeedLoadedState({required this.news});
   get moviesList => news;
 

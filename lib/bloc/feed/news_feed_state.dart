@@ -19,7 +19,6 @@ class NewsFeedLoadingState extends NewsFeedState {
 
 class NewsFeedLoadedState extends NewsFeedState {
   final List<Articles> news;
-
   NewsFeedLoadedState({required this.news});
   get moviesList => news;
 
