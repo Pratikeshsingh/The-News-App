@@ -64,7 +64,7 @@ class _AppBaseState extends State<AppBase> with AutomaticKeepAliveClientMixin {
             PageView(
               controller: _pageController,
               onPageChanged: (page) {
-                currentPage = _pageController.page.round();
+                currentPage = page;
                 if (currentPage == 2) {
                   value.setAppBarVisible(false);
                 } else {
