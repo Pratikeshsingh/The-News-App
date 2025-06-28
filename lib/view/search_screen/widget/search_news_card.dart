@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 // Project imports:
 import 'package:inshort_clone/global/global.dart';
 import 'package:inshort_clone/model/news_model.dart';
-import 'package:inshort_clone/routes/rouut.dart';
+import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/style/colors.dart';
 
 class SearchNewsCard extends StatelessWidget {
@@ -20,8 +20,8 @@ class SearchNewsCard extends StatelessWidget {
     var article = articles[index];
 
     return GestureDetector(
-      onTap: () => Rouut.navigator.pushNamed(
-        Rouut.feedScreen,
+      onTap: () => Routes.navigator.pushNamed(
+        Routes.feedScreen,
         arguments: FeedScreenArguments(
             articalIndex: index, articals: articles, isFromSearch: true),
       ),

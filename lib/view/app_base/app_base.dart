@@ -111,8 +111,8 @@ class BuildNewsScreen extends StatelessWidget {
             );
           }
 
-          if (provider.webviwAdded == false) {
-            provider.addWebScren(
+          if (provider.webviewAdded == false) {
+            provider.addWebScreen(
               WebScreen(
                 url: provider.getNewsURL,
                 isFromBottom: false,

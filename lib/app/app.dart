@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:inshort_clone/bloc/feed/news_feed_bloc.dart';
 import 'package:inshort_clone/bloc/serach_feed/search_feed_bloc.dart';
 import 'package:inshort_clone/controller/settings.dart';
-import 'package:inshort_clone/routes/rouut.dart';
+import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/services/news/news_service.dart';
 import 'package:inshort_clone/style/theme.dart';
 import '../aplication_localization.dart';
@@ -40,8 +40,8 @@ class App extends StatelessWidget {
               Provider.of<SettingsProvider>(context, listen: true).isDarkThemeOn
                   ? ThemeMode.dark
                   : ThemeMode.light,
-          onGenerateRoute: Rouut.onGenerateRoute,
-          navigatorKey: Rouut.navigatorKey,
+          onGenerateRoute: Routes.onGenerateRoute,
+          navigatorKey: Routes.navigatorKey,
           supportedLocales: [
             Locale('en', 'US'),
             Locale('hi', 'IN'),

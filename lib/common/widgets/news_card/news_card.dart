@@ -18,7 +18,7 @@ import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/controller/settings.dart';
 import 'package:inshort_clone/global/global.dart';
 import 'package:inshort_clone/model/news_model.dart';
-import 'package:inshort_clone/routes/rouut.dart';
+import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/services/news/offline_service.dart';
 import 'package:inshort_clone/style/colors.dart';
 import 'package:inshort_clone/style/text_style.dart';

@@ -40,7 +40,7 @@ class _FeedScreenState extends State<FeedScreen>
     int lastPage = 0;
     final provider = Provider.of<FeedProvider>(context, listen: false);
 
-    provider.setfeedPageController(_pageController);
+    provider.setFeedPageController(_pageController);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -63,7 +63,7 @@ class _FeedScreenState extends State<FeedScreen>
                         provider.setFeedBottomActionbarVisible(false);
 
                         lastPage = page;
-                        provider.setCurentArticalIndex(page);
+                        provider.setCurrentArticleIndex(page);
                       },
                       controller: _pageController,
                       itemCount: widget.articals.length,
@@ -109,7 +109,7 @@ class _FeedScreenState extends State<FeedScreen>
                       provider.setAppBarVisible(true);
                     }
                     lastPage = page;
-                    provider.setCurentArticalIndex(page);
+                    provider.setCurrentArticleIndex(page);
                     provider.setFeedBottomActionbarVisible(false);
                   },
                   controller: _pageController,
