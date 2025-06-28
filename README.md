@@ -2,7 +2,7 @@
 
 # Inshorts clone (The News App)
 
-The Clone of the populer News App in India
+The Clone of the popular News App in India
 
 **_Try latest inshorts Clone app apk from below 👇_**
 
@@ -25,7 +25,7 @@ The Clone of the populer News App in India
 
 ### Instruction
 
-Replace the API Key field with your own key, for key visit [newsapi.org](https://themoviedb.org) and create your id.
+Replace the API Key field with your own key, for key visit [newsapi.org](https://newsapi.org) and create your id.
 
 ```
   |-- lib
@@ -49,7 +49,7 @@ Replace the API Key field with your own key, for key visit [newsapi.org](https:/
 
 ### ScreenShots
 
-|                                                    Dscover                                                     |                                                    Feed                                                    |                                                    Settings                                                    |                                              Language Support                                              |
+|                                                    Discover                                                     |                                                    Feed                                                    |                                                    Settings                                                    |                                              Language Support                                              |
 | :------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
 | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/discover.png?raw=true) | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/feed.png?raw=true) | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/settings.png?raw=true) | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/language.png?raw=true)|
 
@@ -66,7 +66,7 @@ Replace the API Key field with your own key, for key visit [newsapi.org](https:/
 
 - flutter_bloc & Dio : for http Request Handling.
 - Provider : for State Management.
-- Hive : for Local Strorage Management.
+- Hive : for Local Storage Management.
 - esys_flutter_share : for Sharing News card.
 - webview_flutter : web view inside the app.
 - auto_route : Page Routing.
