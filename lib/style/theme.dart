@@ -29,7 +29,6 @@ final ThemeData kDarkThemeData = ThemeData(
 
 final ThemeData kLightThemeData = ThemeData(
   canvasColor: AppColor.background,
-  errorColor: AppColor.error,
   colorScheme: ColorScheme.light(
     primary: AppColor.accent,
     secondary: AppColor.accent,
