@@ -1,6 +1,3 @@
-// Dart imports:
-import 'dart:async';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -31,12 +28,43 @@ class WebScreen extends StatefulWidget {
 class _WebScreenState extends State<WebScreen> {
   bool loading = true;
 
-  final Completer<WebViewController> _webViewController =
-      Completer<WebViewController>();
+  late final WebViewController _webViewController;
+  String? _currentUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    final url = widget.isFromBottom
+        ? widget.url
+        : Provider.of<FeedProvider>(context, listen: false).getNewsURL;
+    _webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageFinished: (_) {
+            setState(() {
+              loading = false;
+            });
+          },
+        ),
+      );
+    _loadUrl(url);
+  }
+
+  void _loadUrl(String url) {
+    if (_currentUrl != url) {
+      _currentUrl = url;
+      loading = true;
+      _webViewController.loadRequest(Uri.parse(url));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    String url = Provider.of<FeedProvider>(context, listen: false).getNewsURL;
+    String url = widget.isFromBottom
+        ? widget.url
+        : Provider.of<FeedProvider>(context).getNewsURL;
+    _loadUrl(url);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -54,25 +82,15 @@ class _WebScreenState extends State<WebScreen> {
                       : FeedController.addCurrentPage(1);
             }),
         actions: <Widget>[
-          FutureBuilder<WebViewController>(
-              future: _webViewController.future,
-              builder: (BuildContext context,
-                  AsyncSnapshot<WebViewController> snapshot) {
-                final bool webViewReady =
-                    snapshot.connectionState == ConnectionState.done;
-                final controller = snapshot.data;
-                return IconButton(
-                  icon: const Icon(Icons.replay),
-                  onPressed: !webViewReady || controller == null
-                      ? null
-                      : () {
-                          setState(() {
-                            loading = true;
-                          });
-                          controller.reload();
-                        },
-                );
-              }),
+          IconButton(
+            icon: const Icon(Icons.replay),
+            onPressed: () {
+              setState(() {
+                loading = true;
+              });
+              _webViewController.reload();
+            },
+          ),
         ],
         title: Text(
           url.split("/")[2],
@@ -86,19 +104,8 @@ class _WebScreenState extends State<WebScreen> {
               ? SizedBox(height: 3, child: LinearProgressIndicator())
               : Container(),
           Expanded(
-            child: WebView(
-              initialUrl: url,
-              debuggingEnabled: true,
-              javascriptMode: JavascriptMode.unrestricted,
-              gestureNavigationEnabled: true,
-              onPageFinished: (d) {
-                setState(() {
-                  loading = false;
-                });
-              },
-              onWebViewCreated: (WebViewController webViewController) {
-                _webViewController.complete(webViewController);
-              },
+            child: WebViewWidget(
+              controller: _webViewController,
             ),
           ),
         ],
