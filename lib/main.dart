@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'package:inshort_clone/model/news_model.dart';
+
 import 'package:provider/provider.dart';
 import 'package:inshort_clone/app/app.dart';
 import 'package:inshort_clone/controller/provider.dart';
@@ -13,11 +15,14 @@ void main() async {
     // Initialize Hive
     await Hive.initFlutter();
 
-    // Open boxes
-    await Hive.openBox('bookmarks');
-    await Hive.openBox('topNews');
-    await Hive.openBox('categories');
-    await Hive.openBox('unreads');
+    // Register adapters
+    Hive.registerAdapter(ArticlesAdapter());
+
+    // Open boxes with proper types
+    await Hive.openBox<Articles>('bookmarks');
+    await Hive.openBox<Articles>('topNews');
+    await Hive.openBox<Articles>('categories');
+    await Hive.openBox<Articles>('unreads');
     await Hive.openBox('settingsBox');
 
     runApp(MyApp());
