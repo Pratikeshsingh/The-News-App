@@ -19,14 +19,19 @@ class SearchFeedLoadingState extends SearchFeedState {
 
 class SearchFeedLoadedState extends SearchFeedState {
   final List<Articles> news;
-  SearchFeedLoadedState({@required this.news});
+  
+  SearchFeedLoadedState({required this.news});
+  get moviesList => news;
+
   @override
   List<Object?> get props => [news];
 }
 
 class SearchFeedErrorState extends SearchFeedState {
   final String message;
-  SearchFeedErrorState({@required this.message});
+
+  SearchFeedErrorState({required this.message});
+
   @override
   List<Object?> get props => [message];
 }

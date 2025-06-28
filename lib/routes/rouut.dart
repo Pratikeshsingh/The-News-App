@@ -113,17 +113,18 @@ class FeedScreenArguments {
   final int articalIndex;
   final List<Articles> articals;
   final bool isFromSearch;
-  FeedScreenArguments(
-      {this.key,
-      @required this.articalIndex,
-      @required this.articals,
-      @required this.isFromSearch});
+  FeedScreenArguments({
+    this.key,
+    required this.articalIndex,
+    required this.articals,
+    required this.isFromSearch,
+  });
 }
 
 class ExpandedImageViewArguments {
   final String image;
   ExpandedImageViewArguments({
-    @required this.image,
+    required this.image,
   });
 }
 
@@ -131,5 +132,5 @@ class WebViewArguments {
   final String url;
   final bool isFromBottom;
 
-  WebViewArguments({@required this.url, @required this.isFromBottom});
+  WebViewArguments({required this.url, required this.isFromBottom});
 }
