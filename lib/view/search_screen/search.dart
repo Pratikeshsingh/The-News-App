@@ -6,7 +6,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:inshort_clone/aplication_localization.dart';
+import 'package:inshort_clone/application_localization.dart';
 import 'package:inshort_clone/bloc/serach_feed/search_feed_bloc.dart';
 import 'package:inshort_clone/bloc/serach_feed/search_feed_event.dart';
 import 'package:inshort_clone/bloc/serach_feed/search_feed_state.dart';

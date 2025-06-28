@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 // Project imports:
-import 'package:inshort_clone/aplication_localization.dart';
+import 'package:inshort_clone/application_localization.dart';
 import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/style/colors.dart';
 
