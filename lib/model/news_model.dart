@@ -6,7 +6,7 @@ part 'news_model.g.dart';
 class NewsModel {
   String status;
   int totalResults;
-  List<Articles> articles;
+  List<Articles> articles = [];
 
   NewsModel({
     required this.status,
@@ -29,8 +29,8 @@ class NewsModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = this.status;
     data['totalResults'] = this.totalResults;
-    if (this.articles != null) {
-      data['articles'] = this.articles.map((v) => v.toJson()).toList();
+    if (articles.isNotEmpty) {
+      data['articles'] = articles.map((v) => v.toJson()).toList();
     }
     return data;
   }
