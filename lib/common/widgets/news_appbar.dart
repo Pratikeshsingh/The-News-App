@@ -48,11 +48,11 @@ class NewsCardAppBar extends StatelessWidget {
                   Spacer(),
                   Consumer<FeedProvider>(
                     builder: (context, value, child) =>
-                        value.getCurentArticalIndex != 0
+                        value.getCurrentArticleIndex != 0
                             ? IconButton(
                                 icon: Icon(FeatherIcons.arrowUp),
                                 onPressed: () {
-                                  value.getfeedPageController.animateToPage(0,
+                                  value.getFeedPageController.animateToPage(0,
                                       duration: Duration(milliseconds: 700),
                                       curve: Curves.easeInBack);
                                 })

@@ -14,7 +14,7 @@ import 'package:inshort_clone/bloc/feed/news_feed_event.dart';
 import 'package:inshort_clone/controller/feed_controller.dart';
 import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/global/global.dart';
-import 'package:inshort_clone/routes/rouut.dart';
+import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/style/colors.dart';
 import 'package:inshort_clone/style/text_style.dart';
 
@@ -134,8 +134,8 @@ class CustomAppBar extends StatelessWidget {
             FeedController.addCurrentPage(1);
           });
     } else {
-      if (provider.gethasDataLoaded) {
-        return provider.getCurentArticalIndex == 0
+      if (provider.getHasDataLoaded) {
+        return provider.getCurrentArticleIndex == 0
             ? IconButton(
                 icon: Icon(FeatherIcons.rotateCw),
                 onPressed: () {
@@ -143,7 +143,7 @@ class CustomAppBar extends StatelessWidget {
                 })
             : IconButton(
                 icon: Icon(FeatherIcons.arrowUp),
-                onPressed: () => bringToTop(provider.getfeedPageController));
+                onPressed: () => bringToTop(provider.getFeedPageController));
       } else {
         return IconButton(icon: Icon(FeatherIcons.loader), onPressed: null);
       }

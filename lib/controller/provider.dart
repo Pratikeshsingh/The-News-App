@@ -13,7 +13,7 @@ class FeedProvider extends ChangeNotifier {
   bool _appBarVisible = false;
   bool _watermarkVisible = false;
   bool _feedBottomActionbarVisible = false;
-  int _curentArticalIndex = 0;
+  int _currentArticleIndex = 0;
   PageController _feedPageController;
   PageController _screenController;
   List<Widget> _baseScreen = [
@@ -21,12 +21,12 @@ class FeedProvider extends ChangeNotifier {
     BuildNewsScreen(),
   ];
   String _newsURL = "https://google.com/";
-  bool _webviwAdded = false;
-  List<String> _lastGetRequest = List<String>();
+  bool _webviewAdded = false;
+  List<String> _lastGetRequest = [];
 
   //
 
-  bool get gethasDataLoaded => this._hasDataLoaded;
+  bool get getHasDataLoaded => this._hasDataLoaded;
 
   int get getActiveCategory => this._activeCategory;
 
@@ -40,9 +40,9 @@ class FeedProvider extends ChangeNotifier {
 
   bool get getFeedBottomActionbarVisible => this._feedBottomActionbarVisible;
 
-  int get getCurentArticalIndex => this._curentArticalIndex;
+  int get getCurrentArticleIndex => this._currentArticleIndex;
 
-  PageController get getfeedPageController => this._feedPageController;
+  PageController get getFeedPageController => this._feedPageController;
 
   PageController get getScreenController => this._screenController;
 
@@ -52,7 +52,7 @@ class FeedProvider extends ChangeNotifier {
 
   List<String> get getLastGetRequest => _lastGetRequest;
 
-  bool get webviwAdded => _webviwAdded;
+  bool get webviewAdded => _webviewAdded;
 
   ///
 
@@ -91,12 +91,12 @@ class FeedProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setCurentArticalIndex(int curentArticalIndex) {
-    this._curentArticalIndex = curentArticalIndex;
+  void setCurrentArticleIndex(int currentArticleIndex) {
+    this._currentArticleIndex = currentArticleIndex;
     notifyListeners();
   }
 
-  void setfeedPageController(PageController pageController) {
+  void setFeedPageController(PageController pageController) {
     this._feedPageController = pageController;
     notifyListeners();
   }
@@ -106,7 +106,7 @@ class FeedProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addWebScren(Widget widget) {
+  void addWebScreen(Widget widget) {
     _baseScreen.add(widget);
     notifyListeners();
   }
@@ -117,7 +117,7 @@ class FeedProvider extends ChangeNotifier {
   }
 
   void setWebViewAdded() {
-    this._webviwAdded = true;
+    this._webviewAdded = true;
     notifyListeners();
   }
 
