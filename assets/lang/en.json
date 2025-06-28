@@ -31,6 +31,7 @@
    "swipe_message": "Swipe left for more at",
    "trending": "Treding",
    "error": "Some thing went wrong!",
-   "error_message": "Please check your internet connection and retry."
+   "error_message": "Please check your internet connection and retry.",
+   "others": "Others"
 
 }
