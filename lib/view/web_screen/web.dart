@@ -16,7 +16,7 @@ import 'package:inshort_clone/controller/provider.dart';
 class WebScreen extends StatefulWidget {
   final String url;
   final bool isFromBottom;
-  final PageController pageController;
+  final PageController? pageController;
 
   const WebScreen({
     required this.url,
@@ -50,7 +50,7 @@ class _WebScreenState extends State<WebScreen> {
               widget.isFromBottom
                   ? Navigator.pop(context)
                   : widget.pageController != null
-                      ? widget.pageController.jumpToPage(0)
+                      ? widget.pageController!.jumpToPage(0)
                       : FeedController.addCurrentPage(1);
             }),
         actions: <Widget>[
