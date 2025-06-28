@@ -6,7 +6,6 @@ import 'package:inshort_clone/common/utils/logger.dart';
 import 'package:inshort_clone/global/global.dart';
 
 class GetDio {
-  bool loggedIn;
   GetDio._();
 
   static Dio getDio() {
