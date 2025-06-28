@@ -14,7 +14,11 @@ class SearchNewsCard extends StatelessWidget {
   final List<Articles> articles;
   final int index;
 
-  const SearchNewsCard({Key key, this.articles, this.index}) : super(key: key);
+  const SearchNewsCard({
+    Key? key,
+    required this.articles,
+    required this.index,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var article = articles[index];

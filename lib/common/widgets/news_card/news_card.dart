@@ -30,7 +30,11 @@ class NewsCard extends StatelessWidget {
   final Articles article;
   final bool isFromSearch;
 
-  const NewsCard({Key key, this.article, this.isFromSearch}) : super(key: key);
+  const NewsCard({
+    Key? key,
+    required this.article,
+    required this.isFromSearch,
+  }) : super(key: key);
 
   @override
   build(BuildContext context) {
