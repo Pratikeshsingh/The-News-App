@@ -1,9 +1,5 @@
 // Flutter imports:
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// Package imports:
-import 'package:auto_route/router_utils.dart';
 
 // Project imports:
 import 'package:inshort_clone/model/news_model.dart';
@@ -26,31 +22,34 @@ class Routes {
   static const appBase = '/';
   static const expandedImageView = '/expandedImageView';
 
-  static GlobalKey<NavigatorState> get navigatorKey =>
-      getNavigatorKey<Routes>();
-  static NavigatorState get navigator => navigatorKey.currentState;
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static NavigatorState? get navigator => navigatorKey.currentState;
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
+
     switch (settings.name) {
-      case Routes.searchScreen:
+      case searchScreen:
         return MaterialPageRoute(
           builder: (_) => SearchScreen(),
           settings: settings,
         );
-      case Routes.settingsScreen:
+
+      case settingsScreen:
         return MaterialPageRoute(
           builder: (_) => SettingsScreen(),
           settings: settings,
         );
-      case Routes.bookmarkScreen:
+
+      case bookmarkScreen:
         return MaterialPageRoute(
           builder: (_) => BookmarkScreen(),
           settings: settings,
         );
-      case Routes.webScreen:
-        if (hasInvalidArgs<WebViewArguments>(args, isRequired: true)) {
-          return misTypedArgsRoute<WebViewArguments>(args);
+
+      case webScreen:
+        if (args is! WebViewArguments) {
+          return _errorRoute("Invalid arguments for WebScreen");
         }
         final typedArgs = args as WebViewArguments;
         return MaterialPageRoute(
@@ -60,15 +59,16 @@ class Routes {
           ),
           settings: settings,
         );
-      case Routes.discoverScreen:
+
+      case discoverScreen:
         return MaterialPageRoute(
           builder: (_) => DiscoverScreen(),
           settings: settings,
         );
-      case Routes.expandedImageView:
-        if (hasInvalidArgs<ExpandedImageViewArguments>(args,
-            isRequired: true)) {
-          return misTypedArgsRoute<ExpandedImageViewArguments>(args);
+
+      case expandedImageView:
+        if (args is! ExpandedImageViewArguments) {
+          return _errorRoute("Invalid arguments for ExpandedImageView");
         }
         final typedArgs = args as ExpandedImageViewArguments;
         return MaterialPageRoute(
@@ -78,28 +78,39 @@ class Routes {
           settings: settings,
         );
 
-      case Routes.feedScreen:
-        if (hasInvalidArgs<FeedScreenArguments>(args, isRequired: true)) {
-          return misTypedArgsRoute<FeedScreenArguments>(args);
+      case feedScreen:
+        if (args is! FeedScreenArguments) {
+          return _errorRoute("Invalid arguments for FeedScreen");
         }
         final typedArgs = args as FeedScreenArguments;
         return MaterialPageRoute(
           builder: (_) => FeedScreen(
-              key: typedArgs.key,
-              articleIndex: typedArgs.articleIndex,
-              articles: typedArgs.articles,
-              isFromSearch: typedArgs.isFromSearch),
+            key: typedArgs.key,
+            articleIndex: typedArgs.articleIndex,
+            articles: typedArgs.articles,
+            isFromSearch: typedArgs.isFromSearch,
+          ),
           settings: settings,
         );
 
-      case Routes.appBase:
+      case appBase:
         return MaterialPageRoute(
           builder: (_) => AppBase(),
           settings: settings,
         );
+
       default:
-        return unknownRoutePage(settings.name);
+        return _errorRoute("Unknown route: ${settings.name}");
     }
+  }
+
+  static Route<dynamic> _errorRoute(String message) {
+    return MaterialPageRoute(
+      builder: (_) => Scaffold(
+        appBar: AppBar(title: Text('Routing Error')),
+        body: Center(child: Text(message)),
+      ),
+    );
   }
 }
 
@@ -107,12 +118,12 @@ class Routes {
 // Arguments holder classes
 //***************************************************************************
 
-//FeedScreen arguments holder class
 class FeedScreenArguments {
-  final Key key;
+  final Key? key;
   final int articleIndex;
   final List<Articles> articles;
   final bool isFromSearch;
+
   FeedScreenArguments({
     this.key,
     required this.articleIndex,
@@ -123,9 +134,8 @@ class FeedScreenArguments {
 
 class ExpandedImageViewArguments {
   final String image;
-  ExpandedImageViewArguments({
-    required this.image,
-  });
+
+  ExpandedImageViewArguments({required this.image});
 }
 
 class WebViewArguments {
