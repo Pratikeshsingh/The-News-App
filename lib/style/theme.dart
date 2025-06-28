@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Project imports:
 import 'package:inshort_clone/style/colors.dart';
@@ -15,7 +16,7 @@ final ThemeData kDarkThemeData = ThemeData(
   accentColor: AppColor.accent,
   appBarTheme: AppBarTheme(
     color: Color(0xff333333),
-    brightness: Brightness.dark,
+    systemOverlayStyle: SystemUiOverlayStyle.light,
     iconTheme: IconThemeData(
       color: AppColor.accent,
     ),
@@ -38,7 +39,7 @@ final ThemeData kLightThemeData = ThemeData(
   ),
   appBarTheme: AppBarTheme(
     color: Colors.white,
-    brightness: Brightness.light,
+    systemOverlayStyle: SystemUiOverlayStyle.dark,
     iconTheme: IconThemeData(
       color: AppColor.accent,
     ),
