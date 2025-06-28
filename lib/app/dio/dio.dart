@@ -13,27 +13,27 @@ class GetDio {
     Dio dio = Dio();
     dio.interceptors.add(
       InterceptorsWrapper(
-        onRequest: (RequestOptions options) async {
-          options.connectTimeout = 90000;
-          options.receiveTimeout = 90000;
-          options.sendTimeout = 90000;
+        onRequest: (options, handler) async {
+          options.connectTimeout = const Duration(milliseconds: 90000);
+          options.receiveTimeout = const Duration(milliseconds: 90000);
+          options.sendTimeout = const Duration(milliseconds: 90000);
           options.followRedirects = true;
           options.baseUrl = "https://newsapi.org/v2/";
           options.headers["X-Api-Key"] = "${Global.apikey}";
 
-          return options;
+          handler.next(options);
         },
-        onResponse: (Response response) async {
-          return response;
+        onResponse: (response, handler) async {
+          handler.next(response);
         },
-        onError: (DioError dioError) async {
-          if (dioError.type == DioErrorType.DEFAULT) {
-            if (dioError.message.contains('SocketException')) {
+        onError: (DioException dioError, handler) async {
+          if (dioError.type == DioExceptionType.unknown) {
+            if (dioError.message?.contains('SocketException') ?? false) {
               logMessage('no internet');
             }
           }
 
-          return dioError.response; //continue
+          handler.next(dioError); //continue
         },
       ),
     );
