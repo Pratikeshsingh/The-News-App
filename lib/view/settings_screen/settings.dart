@@ -52,7 +52,7 @@ class SettingsScreen extends StatelessWidget {
               leading: Icon(FontAwesomeIcons.language),
               title: Text(AppLocalizations.of(context).translate('language')),
               onTap: () {},
-              trailing: DropdownButton(
+              trailing: DropdownButton<String>(
                   underline: Container(),
                   value: settingsProvider.activeLanguge,
                   items: Global.lang.map((String value) {
@@ -61,8 +61,10 @@ class SettingsScreen extends StatelessWidget {
                       child: Text(value),
                     );
                   }).toList(),
-                  onChanged: (v) {
-                    settingsProvider.setLang(v);
+                  onChanged: (String? v) {
+                    if (v != null) {
+                      settingsProvider.setLang(v);
+                    }
                   }),
             )
           ],
