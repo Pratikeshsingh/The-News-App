@@ -14,14 +14,6 @@ The Clone of the popular News App in India
 [![Github all releases](https://img.shields.io/github/downloads/Naereen/StrapDown.js/total.svg)](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/releases/)
 -->
 
-### Update
-#### Multiple Language Support
-
-|                                                    English                                                     |                                                    हिंदी                                                    |                                                    मराठी                                                    |                                              ಕನ್ನಡ                                              |
-| :------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
-| ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/english.png?raw=true) | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/hindi.png?raw=true) | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/marathi.png?raw=true) | ![](https://github.com/imSanjaySoni/Inshorts-Clone-The-News-App/blob/master/screenshots/kannada.png?raw=true)|
-
-
 
 ### Instruction
 
@@ -41,7 +33,7 @@ Replace the API Key field with your own key, for key visit [newsapi.org](https:/
 ## Features
 
 - Dark Mode
-- Multi Language Support [ English, हिंदी, मराठी, ಕನ್ನಡ ]
+- Multi Language Support [ English, हिंदी, Nederlands ]
 - Share News Card As Image
 - Offline Read
 - Watermark on shared news card

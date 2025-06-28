@@ -45,8 +45,7 @@ class App extends StatelessWidget {
           supportedLocales: [
             Locale('en', 'US'),
             Locale('hi', 'IN'),
-            Locale('mr', 'IN'),
-            Locale('kn', 'IN'),
+            Locale('nl', 'NL'),
           ],
           localizationsDelegates: [
             AppLocalizations.delegate,
@@ -67,9 +66,11 @@ class App extends StatelessWidget {
             return supportedLocales.first;
           },
           locale: Locale(
-              Provider.of<SettingsProvider>(context, listen: true)
-                  .getActiveLanguageCode(),
-              "IN")),
+            Provider.of<SettingsProvider>(context, listen: true)
+                .getActiveLanguageCode(),
+            Provider.of<SettingsProvider>(context, listen: true)
+                .getActiveCountryCode(),
+          )),
     );
 
     //

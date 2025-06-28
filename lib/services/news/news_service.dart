@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 // Project imports:
 import 'package:inshort_clone/app/dio/dio.dart';
 import 'package:inshort_clone/controller/provider.dart';
+import 'package:inshort_clone/controller/settings.dart';
 import 'package:inshort_clone/model/news_model.dart';
 import 'package:inshort_clone/services/news/offline_service.dart';
 
@@ -50,7 +51,10 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
   @override
   Future<List<Articles>> getNewsByTopic(String topic) async {
-    final String url = "everything?q=$topic&from=${_computeFromDate()}";
+    final settingsProvider =
+        Provider.of<SettingsProvider>(context, listen: false);
+    final String url =
+        "everything?q=$topic&from=${_computeFromDate()}&language=${settingsProvider.getActiveLanguageCode()}";
     final provider = Provider.of<FeedProvider>(context, listen: false);
 
     provider.setDataLoaded(false);
@@ -74,7 +78,10 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
   @override
   Future<List<Articles>> getNewsByCategory(String category) async {
-    final String url = "top-headlines?country=in&category=$category";
+    final settingsProvider =
+        Provider.of<SettingsProvider>(context, listen: false);
+    final String url =
+        "top-headlines?country=${settingsProvider.getActiveCountryCode()}&category=$category";
     final provider = Provider.of<FeedProvider>(context, listen: false);
 
     provider.setDataLoaded(false);
@@ -97,11 +104,14 @@ class NewsFeedRepositoryImpl implements NewsFeedRepository {
 
   @override
   Future<List<Articles>> getNewsBySearchQuery(String query) async {
+    final settingsProvider =
+        Provider.of<SettingsProvider>(context, listen: false);
     final provider = Provider.of<FeedProvider>(context, listen: false);
 
     provider.setDataLoaded(false);
 
-    final String url = "everything?q=$query&from=${_computeFromDate()}";
+    final String url =
+        "everything?q=$query&from=${_computeFromDate()}&language=${settingsProvider.getActiveLanguageCode()}";
 
     Response response = await GetDio.getDio().get(url);
     if (response.statusCode == 200) {

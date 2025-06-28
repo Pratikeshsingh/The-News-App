@@ -13,20 +13,21 @@ class SettingsProvider extends ChangeNotifier {
   String getActiveLanguageCode() {
     final value = Hive.box('settingsBox').get('activeLang');
     switch (value) {
-      case "ಕನ್ನಡ":
-        return "kn";
-        break;
       case "हिंदी":
         return "hi";
-
-        break;
-      case "मराठी":
-        return "mr";
-
-        break;
+      case "Nederlands":
+        return "nl";
       default:
         return "en";
     }
+  }
+
+  String getActiveCountryCode() {
+    final value = Hive.box('settingsBox').get('activeLang');
+    if (value == "Nederlands") {
+      return "NL";
+    }
+    return "IN";
   }
 
   void darkTheme(bool status) {
@@ -45,23 +46,15 @@ class SettingsProvider extends ChangeNotifier {
     final langBox = Hive.box('settingsBox');
 
     switch (value) {
-      case "ಕನ್ನಡ":
-        langBox.put('activeLang', "ಕನ್ನಡ");
-        localeCode = "kn";
-        notifyListeners();
-
-        break;
       case "हिंदी":
         langBox.put('activeLang', "हिंदी");
         localeCode = "hi";
         notifyListeners();
-
         break;
-      case "मराठी":
-        langBox.put('activeLang', "मराठी");
-        localeCode = "mr";
+      case "Nederlands":
+        langBox.put('activeLang', "Nederlands");
+        localeCode = "nl";
         notifyListeners();
-
         break;
       default:
         langBox.put('activeLang', "English");
