@@ -22,9 +22,9 @@ class BottomActionBar extends StatelessWidget {
   final Articles articles;
 
   const BottomActionBar({
-    Key key,
-    this.containerKey,
-    this.articles,
+    Key? key,
+    required this.containerKey,
+    required this.articles,
   }) : super(key: key);
 
   @override

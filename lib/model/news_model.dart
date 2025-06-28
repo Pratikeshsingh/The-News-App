@@ -8,7 +8,11 @@ class NewsModel {
   int totalResults;
   List<Articles> articles;
 
-  NewsModel({this.status, this.totalResults, this.articles});
+  NewsModel({
+    required this.status,
+    required this.totalResults,
+    required this.articles,
+  });
 
   NewsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -51,15 +55,16 @@ class Articles {
   @HiveField(7)
   String content;
 
-  Articles(
-      {this.sourceName,
-      this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+  Articles({
+    required this.sourceName,
+    required this.author,
+    required this.title,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+    required this.publishedAt,
+    required this.content,
+  });
 
   Articles.fromJson(Map<String, dynamic> json) {
     sourceName = json['source'] != null
@@ -94,7 +99,10 @@ class Source {
   String id;
   String name;
 
-  Source({this.id, this.name});
+  Source({
+    required this.id,
+    required this.name,
+  });
 
   Source.fromJson(Map<String, dynamic> json) {
     id = json['id'];

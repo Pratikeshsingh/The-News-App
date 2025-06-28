@@ -18,7 +18,10 @@ import '../../../application_localization.dart';
 class BottomBar extends StatelessWidget {
   final Articles articles;
 
-  const BottomBar({Key key, this.articles}) : super(key: key);
+  const BottomBar({
+    Key? key,
+    required this.articles,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
