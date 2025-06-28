@@ -6,10 +6,10 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:inshort_clone/aplication_localization.dart';
-import 'package:inshort_clone/bloc/search_feed/search_feed_bloc.dart';
-import 'package:inshort_clone/bloc/search_feed/search_feed_event.dart';
-import 'package:inshort_clone/bloc/search_feed/search_feed_state.dart';
+import 'package:inshort_clone/application_localization.dart';
+import 'package:inshort_clone/bloc/serach_feed/search_feed_bloc.dart';
+import 'package:inshort_clone/bloc/serach_feed/search_feed_event.dart';
+import 'package:inshort_clone/bloc/serach_feed/search_feed_state.dart';
 import 'package:inshort_clone/style/text_style.dart';
 import 'package:inshort_clone/view/search_screen/widget/search_news_card.dart';
 

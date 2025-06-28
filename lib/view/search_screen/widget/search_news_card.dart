@@ -23,7 +23,7 @@ class SearchNewsCard extends StatelessWidget {
       onTap: () => Routes.navigator.pushNamed(
         Routes.feedScreen,
         arguments: FeedScreenArguments(
-            articalIndex: index, articals: articles, isFromSearch: true),
+            articleIndex: index, articles: articles, isFromSearch: true),
       ),
       child: Padding(
         padding: const EdgeInsets.only(

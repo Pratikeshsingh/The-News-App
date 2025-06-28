@@ -18,7 +18,7 @@ class GetDio {
           options.receiveTimeout = 90000;
           options.sendTimeout = 90000;
           options.followRedirects = true;
-          options.baseUrl = "http://newsapi.org/v2/";
+          options.baseUrl = "https://newsapi.org/v2/";
           options.headers["X-Api-Key"] = "${Global.apikey}";
 
           return options;

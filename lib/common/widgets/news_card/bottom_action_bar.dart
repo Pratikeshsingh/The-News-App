@@ -15,7 +15,7 @@ import 'package:inshort_clone/services/news/offline_service.dart';
 import 'package:inshort_clone/services/news/share_service.dart';
 import 'package:inshort_clone/style/colors.dart';
 import 'package:inshort_clone/style/text_style.dart';
-import '../../../aplication_localization.dart';
+import '../../../application_localization.dart';
 
 class BottomActionBar extends StatelessWidget {
   final containerKey;

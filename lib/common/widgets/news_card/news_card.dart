@@ -14,7 +14,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:inshort_clone/aplication_localization.dart';
+import 'package:inshort_clone/application_localization.dart';
 import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/controller/settings.dart';
 import 'package:inshort_clone/global/global.dart';

@@ -44,7 +44,7 @@ class FeedController {
     return index;
   }
 
-  static void dispose(String stream) {
+  static void dispose() {
     _currentArticleIndex.close();
     _currentPage.close();
   }

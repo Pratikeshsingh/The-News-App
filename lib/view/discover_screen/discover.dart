@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import 'package:inshort_clone/aplication_localization.dart';
+import 'package:inshort_clone/application_localization.dart';
 import 'package:inshort_clone/bloc/feed/news_feed_bloc.dart';
 import 'package:inshort_clone/bloc/feed/news_feed_event.dart';
 import 'package:inshort_clone/controller/feed_controller.dart';

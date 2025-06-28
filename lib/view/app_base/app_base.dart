@@ -17,7 +17,7 @@ import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/style/text_style.dart';
 import 'package:inshort_clone/view/feed_screen/feed.dart';
 import 'package:inshort_clone/view/web_screen/web.dart';
-import '../../aplication_localization.dart';
+import '../../application_localization.dart';
 
 class AppBase extends StatefulWidget {
   @override
@@ -123,8 +123,8 @@ class BuildNewsScreen extends StatelessWidget {
 
           return FeedScreen(
             isFromSearch: false,
-            articalIndex: 0,
-            articals: state.news,
+            articleIndex: 0,
+            articles: state.news,
           );
         } else if (state is NewsFeedErrorState) {
           provider.setDataLoaded(true);

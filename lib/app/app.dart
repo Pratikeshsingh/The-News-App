@@ -13,7 +13,7 @@ import 'package:inshort_clone/controller/settings.dart';
 import 'package:inshort_clone/routes/routes.dart';
 import 'package:inshort_clone/services/news/news_service.dart';
 import 'package:inshort_clone/style/theme.dart';
-import '../aplication_localization.dart';
+import '../application_localization.dart';
 
 class App extends StatelessWidget {
   @override

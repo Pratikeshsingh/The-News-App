@@ -11,7 +11,7 @@ import 'package:inshort_clone/controller/settings.dart';
 import 'package:inshort_clone/global/global.dart';
 import 'package:inshort_clone/style/colors.dart';
 import 'package:inshort_clone/style/text_style.dart';
-import '../../aplication_localization.dart';
+import '../../application_localization.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
