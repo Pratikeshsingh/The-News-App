@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 // Package imports:
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -151,7 +152,7 @@ class CustomAppBar extends StatelessWidget {
 
   void reloade(context) {
     final provider = Provider.of<FeedProvider>(context, listen: false);
-    print(provider.getLastGetRequest.elementAt(0));
+    debugPrint(provider.getLastGetRequest.elementAt(0));
 
     switch (provider.getLastGetRequest.elementAt(0)) {
       case "getNewsByTopic":

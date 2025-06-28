@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 // Package imports:
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,7 +17,7 @@ void handleBookmarks(Articles article) async {
 
   if (!isPresent) {
     bookmarksBox.put(article.url, article);
-    print(bookmarksBox.length);
+    debugPrint(bookmarksBox.length.toString());
     Fluttertoast.showToast(
       msg: 'Added to Bookmark',
       backgroundColor: Colors.black,
@@ -26,7 +27,7 @@ void handleBookmarks(Articles article) async {
     );
   } else {
     bookmarksBox.delete(article.url);
-    print(bookmarksBox.length);
+    debugPrint(bookmarksBox.length.toString());
 
     Fluttertoast.showToast(
       msg: 'Removed from Bookmarks',
@@ -42,7 +43,7 @@ void addArticlesToUnreads(List<Articles> articles) async {
   articles.forEach((element) {
     if (!unreadsBox.containsKey(element.url)) {
       unreadsBox.put(element.url, element);
-      print('added' + "${unreadsBox.length}");
+      debugPrint('added${unreadsBox.length}');
     }
   });
 }
@@ -50,6 +51,6 @@ void addArticlesToUnreads(List<Articles> articles) async {
 void removeArticleFromUnreads(Articles articles) {
   if (unreadsBox.containsKey(articles.url)) {
     unreadsBox.delete(articles.url);
-    print('removed' + "${unreadsBox.length}");
+    debugPrint('removed${unreadsBox.length}');
   }
 }

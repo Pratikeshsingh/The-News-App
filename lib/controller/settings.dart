@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 // Package imports:
 import 'package:hive/hive.dart';
@@ -33,7 +34,7 @@ class SettingsProvider extends ChangeNotifier {
 
     final themeBox = Hive.box('settingsBox');
     themeBox.put('isDarkModeOn', status);
-    print(themeBox.get('isDarkModeOn'));
+    debugPrint(themeBox.get('isDarkModeOn').toString());
 
     notifyListeners();
   }
