@@ -14,7 +14,7 @@ import 'package:inshort_clone/controller/provider.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/category_card.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/headline.dart';
 import 'package:inshort_clone/view/discover_screen/widgets/topics_card.dart';
-import 'widgets/app_bar.dart';
+import 'package:inshort_clone/view/discover_screen/widgets/app_bar.dart';
 
 class _TopicData {
   final String key;
