@@ -11,8 +11,8 @@ import 'search_feed_event.dart';
 import 'search_feed_state.dart';
 
 class SearchFeedBloc extends Bloc<SearchFeedEvent, SearchFeedState> {
-  NewsFeedRepository repository;
-  SearchFeedBloc({@required this.repository});
+  final NewsFeedRepository repository;
+  SearchFeedBloc({required this.repository});
 
   @override
   SearchFeedState get initialState => SearchFeedInitialState();

@@ -18,8 +18,11 @@ class WebScreen extends StatefulWidget {
   final bool isFromBottom;
   final PageController pageController;
 
-  WebScreen(
-      {@required this.url, @required this.isFromBottom, this.pageController});
+  const WebScreen({
+    required this.url,
+    required this.isFromBottom,
+    this.pageController,
+  });
 
   @override
   _WebScreenState createState() => _WebScreenState();

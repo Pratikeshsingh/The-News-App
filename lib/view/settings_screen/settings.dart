@@ -56,9 +56,9 @@ class SettingsScreen extends StatelessWidget {
                   underline: Container(),
                   value: settingsProvider.activeLanguge,
                   items: Global.lang.map((String value) {
-                    return new DropdownMenuItem<String>(
+                    return DropdownMenuItem<String>(
                       value: value,
-                      child: new Text(value),
+                      child: Text(value),
                     );
                   }).toList(),
                   onChanged: (v) {

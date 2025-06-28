@@ -8,7 +8,7 @@ import 'package:photo_view/photo_view.dart';
 class ExpandedImageView extends StatelessWidget {
   final image;
 
-  ExpandedImageView({@required this.image});
+  const ExpandedImageView({required this.image});
 
   @override
   Widget build(BuildContext context) {
