@@ -3,7 +3,11 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:inshort_clone/controller/provider.dart';
 import 'package:provider/provider.dart';
-import 'package:inshort_clone/routes/routes.dart'; // Make sure this exists
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inshort_clone/bloc/feed/news_feed_bloc.dart';
+import 'package:inshort_clone/bloc/search_feed/search_feed_bloc.dart';
+import 'package:inshort_clone/routes/routes.dart';
+import 'package:inshort_clone/services/news/news_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,11 +49,23 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => FeedProvider()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Inshorts Clone',
-        onGenerateRoute: Routes.onGenerateRoute,
-        initialRoute: Routes.appBase,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<NewsFeedBloc>(
+            create: (context) =>
+                NewsFeedBloc(repository: NewsFeedRepositoryImpl(context)),
+          ),
+          BlocProvider<SearchFeedBloc>(
+            create: (context) =>
+                SearchFeedBloc(repository: NewsFeedRepositoryImpl(context)),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Inshorts Clone',
+          onGenerateRoute: Routes.onGenerateRoute,
+          initialRoute: Routes.appBase,
+        ),
       ),
     );
   }
