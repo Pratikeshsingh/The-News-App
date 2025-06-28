@@ -24,7 +24,7 @@ class SearchNewsCard extends StatelessWidget {
     var article = articles[index];
 
     return GestureDetector(
-      onTap: () => Routes.navigator.pushNamed(
+      onTap: () => Routes.navigator?.pushNamed(
         Routes.feedScreen,
         arguments: FeedScreenArguments(
             articleIndex: index, articles: articles, isFromSearch: true),
