@@ -39,7 +39,7 @@ class NewsModel {
 @HiveType(typeId: 101)
 class Articles {
   @HiveField(0)
-  String sourceName;
+  String? sourceName;
   @HiveField(1)
   String author;
   @HiveField(2)
@@ -56,7 +56,7 @@ class Articles {
   String content;
 
   Articles({
-    required this.sourceName,
+    this.sourceName,
     required this.author,
     required this.title,
     required this.description,
