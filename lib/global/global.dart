@@ -5,8 +5,7 @@ class Global {
   static final List<String> lang = [
     "English",
     "हिंदी",
-    "मराठी",
-    "ಕನ್ನಡ",
+    "Nederlands",
   ];
 
   static height(context) => MediaQuery.of(context).size.height;
