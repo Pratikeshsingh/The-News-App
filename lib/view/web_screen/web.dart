@@ -60,10 +60,10 @@ class _WebScreenState extends State<WebScreen> {
                   AsyncSnapshot<WebViewController> snapshot) {
                 final bool webViewReady =
                     snapshot.connectionState == ConnectionState.done;
-                final WebViewController controller = snapshot.data;
+                final controller = snapshot.data;
                 return IconButton(
                   icon: const Icon(Icons.replay),
-                  onPressed: !webViewReady
+                  onPressed: !webViewReady || controller == null
                       ? null
                       : () {
                           setState(() {
