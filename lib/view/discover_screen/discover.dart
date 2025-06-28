@@ -36,19 +36,15 @@ class DiscoverScreen extends StatefulWidget {
 class _DiscoverScreenState extends State<DiscoverScreen> {
   var bloc;
   final List<_TopicData> _allTopics = const [
-    _TopicData(key: 'coronavirus', icon: 'coronavirus', isCategory: false, value: 'coronavirus'),
-    _TopicData(key: 'india', icon: 'india', isCategory: false, value: 'india'),
-    _TopicData(key: 'business', icon: 'business', isCategory: true, value: 'business'),
+    _TopicData(key: 'netherlands', icon: 'international', isCategory: false, value: 'netherlands'),
+    _TopicData(key: 'world', icon: 'international', isCategory: false, value: 'world'),
     _TopicData(key: 'politics', icon: 'politics', isCategory: false, value: 'politics'),
-    _TopicData(key: 'sports', icon: 'sports', isCategory: true, value: 'sports'),
+    _TopicData(key: 'business', icon: 'business', isCategory: true, value: 'business'),
     _TopicData(key: 'technology', icon: 'technology', isCategory: true, value: 'technology'),
-    _TopicData(key: 'startups', icon: 'startups', isCategory: false, value: 'startups'),
+    _TopicData(key: 'sports', icon: 'sports', isCategory: true, value: 'sports'),
     _TopicData(key: 'entertainment', icon: 'entertainment', isCategory: true, value: 'entertainment'),
-    _TopicData(key: 'education', icon: 'education', isCategory: false, value: 'education'),
-    _TopicData(key: 'automobile', icon: 'automobile', isCategory: false, value: 'automobile'),
-    _TopicData(key: 'science', icon: 'science', isCategory: true, value: 'science'),
-    _TopicData(key: 'travel', icon: 'travel', isCategory: false, value: 'travel'),
-    _TopicData(key: 'fashion', icon: 'fashion', isCategory: false, value: 'fashion'),
+    _TopicData(key: 'environment', icon: 'science', isCategory: false, value: 'environment'),
+    _TopicData(key: 'health', icon: 'coronavirus', isCategory: true, value: 'health'),
   ];
 
   List<_TopicData> _visibleTopics = [];
