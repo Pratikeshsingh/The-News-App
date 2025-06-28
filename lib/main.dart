@@ -1,52 +1,56 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-// Package imports:
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
-
-// Project imports:
 import 'package:inshort_clone/controller/provider.dart';
-import 'package:inshort_clone/controller/settings.dart';
-import 'package:inshort_clone/model/news_model.dart';
-import 'app/app.dart';
+import 'package:provider/provider.dart';
+import 'package:inshort_clone/routes/routes.dart'; // Make sure this exists
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final docPath = await getApplicationDocumentsDirectory();
 
-  Hive.init(docPath.path);
-  Hive.registerAdapter(ArticlesAdapter());
+  try {
+    // Initialize Hive
+    await Hive.initFlutter();
 
-  await Hive.openBox('settingsBox');
-  await Hive.openBox<Articles>('bookmarks');
-  await Hive.openBox<Articles>('unreads');
+    // Open boxes
+    await Hive.openBox('bookmarks');
+    await Hive.openBox('topNews');
+    await Hive.openBox('categories');
 
-  final _isDarkModeOn = await Hive.box('settingsBox').get('isDarkModeOn');
-  SettingsProvider().darkTheme(_isDarkModeOn ?? false);
+    runApp(MyApp());
+  } catch (e, stackTrace) {
+    // Log error to console
+    print('❌ Error during app initialization: $e');
+    print('🔍 Stack trace:\n$stackTrace');
 
-  final _lang = await Hive.box('settingsBox').get('activeLang') ?? "English";
-  SettingsProvider().setLang(_lang);
+    // Run a fallback UI that shows an error message
+    runApp(MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text(
+            'Something went wrong.\nCheck the logs for more details.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+      ),
+    ));
+  }
+}
 
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.black,
-      statusBarColor: Colors.black,
-      statusBarBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ),
-  );
-
-  runApp(
-    MultiProvider(
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SettingsProvider>(
-            create: (_) => SettingsProvider()),
-        ChangeNotifierProvider<FeedProvider>(create: (_) => FeedProvider()),
+        ChangeNotifierProvider(create: (_) => FeedProvider()),
       ],
-      child: App(),
-    ),
-  );
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Inshorts Clone',
+        onGenerateRoute: Routes.onGenerateRoute,
+        initialRoute: Routes.appBase,
+      ),
+    );
+  }
 }

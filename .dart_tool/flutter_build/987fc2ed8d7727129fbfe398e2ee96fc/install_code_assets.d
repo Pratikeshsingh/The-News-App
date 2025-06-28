@@ -1,0 +1,1 @@
+ /Users/pratikeshsingh/Desktop/Git/The-News-App.git/.dart_tool/flutter_build/987fc2ed8d7727129fbfe398e2ee96fc/native_assets.json: 
